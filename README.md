@@ -518,6 +518,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 ## 📞 Contact
 
 **Author**: Sritej Reddy
+**email**: sritej41@gmail.com
 **GitHub**: [@epitofcode](https://github.com/epitofcode)
 **Repository**: [https://github.com/epitofcode/Hyperspectral_Analysis](https://github.com/epitofcode/Hyperspectral_Analysis)
 
@@ -533,7 +534,3 @@ For questions or issues, please open an issue on GitHub.
 4. **Explore preprocessing**: Check `img_process/` for additional techniques
 5. **Contribute**: Share improvements and findings!
 
----
-
-**Built with Claude Code** 🤖
-[https://claude.com/claude-code](https://claude.com/claude-code)
