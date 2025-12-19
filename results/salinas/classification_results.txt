@@ -1,0 +1,38 @@
+SALINAS - COMPLETE CLASSIFICATION RESULTS
+================================================================================
+
+PIXEL-WISE BASELINE:
+----------------------------------------
+Overall Accuracy:   94.54%
+Average Accuracy:   97.24%
+Kappa Coefficient:  0.9392
+
+SPATIAL-SPECTRAL (7x7 patches):
+----------------------------------------
+Overall Accuracy:   99.28%
+Average Accuracy:   99.68%
+Kappa Coefficient:  0.9920
+
+IMPROVEMENT:
+----------------------------------------
+OA Improvement: +4.74%
+AA Improvement: +2.44%
+
+PER-CLASS ACCURACY (Spatial-Spectral):
+----------------------------------------
+   1. Brocoli_green_weeds_1         : 100.00%
+   2. Brocoli_green_weeds_2         : 100.00%
+   3. Fallow                        : 100.00%
+   4. Fallow_rough_plow             : 100.00%
+   5. Fallow_smooth                 : 100.00%
+   6. Stubble                       : 100.00%
+   7. Celery                        : 99.96%
+   8. Grapes_untrained              : 98.91%
+   9. Soil_vinyard_develop          : 100.00%
+  10. Corn_senesced_green_weeds     : 100.00%
+  11. Lettuce_romaine_4wk           : 99.60%
+  12. Lettuce_romaine_5wk           : 100.00%
+  13. Lettuce_romaine_6wk           : 100.00%
+  14. Lettuce_romaine_7wk           : 100.00%
+  15. Vinyard_untrained             : 96.40%
+  16. Vinyard_vertical_trellis      : 100.00%
