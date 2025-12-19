@@ -1,0 +1,29 @@
+PAVIA UNIVERSITY - COMPLETE CLASSIFICATION RESULTS
+================================================================================
+
+PIXEL-WISE BASELINE:
+----------------------------------------
+Overall Accuracy:   93.47%
+Average Accuracy:   90.18%
+Kappa Coefficient:  0.9078
+
+SPATIAL-SPECTRAL (7x7 patches):
+----------------------------------------
+Overall Accuracy:   99.48%
+Average Accuracy:   98.99%
+Kappa Coefficient:  0.9927
+
+IMPROVEMENT:
+----------------------------------------
+OA Improvement: +6.01%
+AA Improvement: +8.81%
+
+PER-CLASS ACCURACY (Spatial-Spectral):
+----------------------------------------
+   1. Asphalt             : 99.25%
+   2. Meadows             : 99.38%
+   3. Gravel              : 99.30%
+   4. Trees               : 96.24%
+   5. Metal sheets        : 99.85%
+   6. Bare Soil           : 99.95%
+   7. Bitumen             : 98.95%

@@ -142,10 +142,10 @@ Spatial_Spectral_analysis/
 │       └── pavia_centre_gt.mat     (1096×715)
 │
 ├── code/                           # Main pipeline implementation
-│   ├── spatial_spectral_pipeline.py    # Main script (headless)
-│   ├── interactive_classification.py   # Interactive with plots
+│   ├── indian_pines.py                 # Complete pipeline for Indian Pines
+│   ├── pavia.py                        # Complete pipeline for Pavia University
 │   ├── image_utils.py                  # Data loading utilities
-│   └── spatial_spectral_features.py    # Patch extraction
+│   └── README.md                       # Code documentation
 │
 ├── img_process/                    # Preprocessing techniques (educational)
 │   ├── bad_band_removal.py
@@ -407,7 +407,7 @@ Variance = (λ₁ + λ₂ + ... + λ₅₀) / (λ₁ + λ₂ + ... + λ₂₀₀
 
 ### Code Implementation
 
-**File**: `code/spatial_spectral_pipeline.py`
+**File**: `code/indian_pines.py` (or `pavia.py` for Pavia University)
 
 ```python
 from sklearn.decomposition import PCA
@@ -1738,9 +1738,11 @@ Every class represented in both splits!
 
 ### Main Pipeline Script
 
-**File**: `code/spatial_spectral_pipeline.py`
+**File**: `code/indian_pines.py` or `code/pavia.py`
 
-Let me walk through the complete main script:
+Each dataset has a dedicated script that runs the complete pipeline (baseline + spatial-spectral + visualization).
+
+Let me walk through the complete pipeline:
 
 ```python
 #!/usr/bin/env python3
@@ -2303,12 +2305,18 @@ Spatial_Spectral_analysis/
 # 1. Navigate to code directory
 cd code
 
-# 2. Run main pipeline (headless)
-python spatial_spectral_pipeline.py
+# 2. Run complete pipeline for Indian Pines
+python indian_pines.py
 
-# 3. Or run interactive version (with plots)
-python interactive_classification.py
+# 3. Or run complete pipeline for Pavia University
+python pavia.py
 ```
+
+**What each script does:**
+- Step 1-2: Loads data and applies PCA
+- Step 3: Pixel-wise baseline classification
+- Step 4: Spatial-spectral classification with patches
+- Step 5-7: Comparison, visualization, and results saving
 
 ### Custom Dataset
 

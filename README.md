@@ -64,16 +64,23 @@ Download benchmark hyperspectral datasets and place in `data/` folder:
 ```bash
 cd code
 
-# Headless mode (no plots, faster)
-python spatial_spectral_pipeline.py
+# Indian Pines (complete pipeline - baseline + spatial-spectral + visualization)
+python indian_pines.py
 
-# Interactive mode (with visualizations)
-python interactive_classification.py
+# Pavia University (complete pipeline - baseline + spatial-spectral + visualization)
+python pavia.py
 ```
 
+**What each script does:**
+1. Pixel-wise baseline classification (fast)
+2. Spatial-spectral classification with 7×7 patches (high accuracy)
+3. Generates comprehensive 3×3 grid visualization
+4. Saves results to `results/` folder
+
 **Output:**
-- Classification maps saved to `results/`
-- Terminal shows accuracy metrics and per-class performance
+- `results/<dataset>/COMPLETE.png` - Comprehensive visualization
+- `results/<dataset>/classification_results.txt` - Detailed metrics
+- Terminal shows step-by-step progress and both baseline + optimized results
 
 ---
 
@@ -114,10 +121,10 @@ python interactive_classification.py
 Hyperspectral_Analysis/
 │
 ├── code/                              # Main implementation
-│   ├── spatial_spectral_pipeline.py   # Headless classification pipeline
-│   ├── interactive_classification.py  # Interactive version with plots
+│   ├── indian_pines.py                # Complete pipeline for Indian Pines
+│   ├── pavia.py                       # Complete pipeline for Pavia University
 │   ├── image_utils.py                 # Data loading utilities
-│   └── spatial_spectral_features.py   # Patch extraction (if exists)
+│   └── README.md                      # Code documentation
 │
 ├── img_process/                       # Preprocessing techniques (educational)
 │   ├── bad_band_removal.py            # SNR-based band filtering
@@ -313,37 +320,48 @@ See `img_process/wiki.md` for detailed analysis.
 
 ## ⚙️ Customization
 
-### Change Dataset
+### Run Different Dataset
 
-Edit `code/spatial_spectral_pipeline.py`:
+Simply run the corresponding script:
 
-```python
-# Line ~20
-DATASET = 'pavia_center'  # or 'indian_pines', 'salinas', etc.
+```bash
+cd code
+python indian_pines.py    # For Indian Pines
+python pavia.py           # For Pavia University
 ```
 
 ### Adjust Hyperparameters
 
+Edit the script (e.g., `indian_pines.py`):
+
 ```python
-# PCA components (default: 50)
-PCA_COMPONENTS = 50        # Try: 30, 50, 70
+# Around line 130
+PATCH_SIZE = 7        # Try: 5, 7, 11 (default: 7)
+N_PCA = 30            # Try: 20, 30, 50 (default: 30)
 
-# Patch size (default: 11×11)
-PATCH_SIZE = 11            # Try: 7, 11, 15, 21
-
-# SVM regularization (default: C=10)
-SVM_C = 10                 # Try: 1, 10, 100
-
-# Train/test split (default: 30/70)
-TEST_SIZE = 0.7            # 70% for testing
+# Around line 280
+C=10                  # SVM regularization: Try 1, 10, 100
 ```
 
 ### Add New Dataset
 
-1. Download dataset (.mat files)
-2. Place in `data/your_dataset/`
-3. Update `DATASET` variable
-4. Run pipeline
+1. **Copy template:**
+   ```bash
+   cp code/indian_pines.py code/salinas.py
+   ```
+
+2. **Update paths** (around lines 35-36):
+   ```python
+   image = load_hyperspectral_mat('../data/salinas/salinas_image.mat')
+   gt = load_ground_truth('../data/salinas/salinas_gt.mat')
+   ```
+
+3. **Update class names** (find `all_class_names` list)
+
+4. **Run:**
+   ```bash
+   python salinas.py
+   ```
 
 ---
 
