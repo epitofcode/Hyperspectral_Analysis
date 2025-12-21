@@ -1,0 +1,68 @@
+KSC (KENNEDY SPACE CENTER) - SIMPLIFIED BASELINE RESULTS
+================================================================================
+
+CONFIGURATION:
+----------------------------------------
+Method: Simplified baseline (CLAUDE.md pragmatism principle)
+PCA components: 50
+Patch size: 11x11
+Classifier: Single SVM (RBF, C=100, class_weight='balanced')
+No Gabor, No augmentation, No ensemble
+
+
+CLASS DISTRIBUTION:
+----------------------------------------
+  Class  1 (Scrub               ):   761 samples
+  Class  2 (Willow swamp        ):   243 samples
+  Class  3 (CP hammock          ):   256 samples
+  Class  4 (CP/Oak              ):   252 samples
+  Class  5 (Slash pine          ):   161 samples
+  Class  6 (Oak/Broadleaf       ):   229 samples
+  Class  7 (Hardwood swamp      ):   105 samples
+  Class  8 (Graminoid marsh     ):   431 samples
+  Class  9 (Spartina marsh      ):   520 samples
+  Class 10 (Cattail marsh       ):   404 samples
+  Class 11 (Salt marsh          ):   419 samples
+  Class 12 (Mud flats           ):   503 samples
+  Class 13 (Water               ):   927 samples
+
+
+OVERALL RESULTS:
+----------------------------------------
+Overall Accuracy (OA): 79.93%
+Average Accuracy (AA): 73.69%
+Kappa Coefficient:     0.7761
+
+
+PER-CLASS ACCURACY:
+----------------------------------------
+   1. Scrub               :  92.39%
+   2. Willow swamp        :  55.37%
+   3. CP hammock          :  82.81%
+   4. CP/Oak              :  26.19%
+   5. Slash pine          :  46.25%
+   6. Oak/Broadleaf       :  62.28%
+   7. Hardwood swamp      :  96.15%
+   8. Graminoid marsh     :  84.26%
+   9. Spartina marsh      :  85.00%
+  10. Cattail marsh       :  46.53%
+  11. Salt marsh          :  95.24%
+  12. Mud flats           :  90.08%
+  13. Water               :  95.47%
+
+
+CONFUSION MATRIX:
+----------------------------------------
+[[352   5  14   8   0   2   0   0   0   0   0   0   0]
+ [  0  67   5   1   4   1   3   9   0  16   0  15   0]
+ [  2   0 106   8   2   9   1   0   0   0   0   0   0]
+ [  6   6  31  33   8   4   0   2   1   1   0  34   0]
+ [  2   2  13   8  37   0   0   0   0   2   0  16   0]
+ [ 24   0   5   2   1  71   0   0   0   0   0  11   0]
+ [  0   1   1   0   0   0  50   0   0   0   0   0   0]
+ [  0   0   0   0   2   0   0 182  17   0   0   8   7]
+ [  0   0   0   0   0   0   0  39 221   0   0   0   0]
+ [  0   5   0   1   0   0   0  48   0  94   0  54   0]
+ [  0   0   0   4   0   0   0   1   2   0 200   3   0]
+ [  0   0   0   0   0   0   0  12   0  13   0 227   0]
+ [  0   0   0   0   0   0   0   1   0   0   0  20 443]]

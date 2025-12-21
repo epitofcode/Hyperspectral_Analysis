@@ -1,0 +1,93 @@
+INDIAN PINES - SIMPLIFIED BASELINE RESULTS
+================================================================================
+
+CONFIGURATION:
+----------------------------------------
+Method: Simplified baseline (CLAUDE.md pragmatism principle)
+PCA components: 50
+Patch size: 11x11
+Classifier: Single SVM (RBF, C=100, class_weight='balanced')
+No Gabor, No augmentation, No ensemble
+
+
+CLASS DISTRIBUTION:
+----------------------------------------
+  Class  1 (Alfalfa                       ):    46 samples
+  Class  2 (Corn-notill                   ):  1428 samples
+  Class  3 (Corn-mintill                  ):   830 samples
+  Class  4 (Corn                          ):   237 samples
+  Class  5 (Grass-pasture                 ):   483 samples
+  Class  6 (Grass-trees                   ):   730 samples
+  Class  7 (Grass-pasture-mowed           ):    28 samples
+  Class  8 (Hay-windrowed                 ):   478 samples
+  Class  9 (Oats                          ):    20 samples
+  Class 10 (Soybean-notill                ):   972 samples
+  Class 11 (Soybean-mintill               ):  2455 samples
+  Class 12 (Soybean-clean                 ):   593 samples
+  Class 13 (Wheat                         ):   205 samples
+  Class 14 (Woods                         ):  1265 samples
+  Class 15 (Buildings-Grass-Trees-Drives  ):   386 samples
+  Class 16 (Stone-Steel-Towers            ):    93 samples
+
+
+OVERALL RESULTS:
+----------------------------------------
+Overall Accuracy (OA): 95.88%
+Average Accuracy (AA): 80.45%
+Kappa Coefficient:     0.9529
+
+
+PER-CLASS ACCURACY:
+----------------------------------------
+   1. Alfalfa                       :  13.04%
+   2. Corn-notill                   :  96.36%
+   3. Corn-mintill                  :  94.22%
+   4. Corn                          :  80.51%
+   5. Grass-pasture                 :  94.21%
+   6. Grass-trees                   :  99.73%
+   7. Grass-pasture-mowed           :  28.57%
+   8. Hay-windrowed                 : 100.00%
+   9. Oats                          :  30.00%
+  10. Soybean-notill                :  93.83%
+  11. Soybean-mintill               :  99.67%
+  12. Soybean-clean                 :  92.59%
+  13. Wheat                         :  98.04%
+  14. Woods                         :  98.89%
+  15. Buildings-Grass-Trees-Drives  :  95.85%
+  16. Stone-Steel-Towers            :  71.74%
+
+
+CONFUSION MATRIX:
+----------------------------------------
+[[   3    3    0    0    0    0    0   15    0    0    0    2    0    0
+     0    0]
+ [   0  688    0    0    0    0    0    0    0    4   19    3    0    0
+     0    0]
+ [   0   21  391    0    0    0    0    0    0    0    0    3    0    0
+     0    0]
+ [   0   13    0   95    0    0    0    0    0    0    8    2    0    0
+     0    0]
+ [   0    5    1    0  228    0    0    0    0    0    5    0    0    3
+     0    0]
+ [   0    1    0    0    0  364    0    0    0    0    0    0    0    0
+     0    0]
+ [   0    1    0    0    2    0    4    0    0    0    7    0    0    0
+     0    0]
+ [   0    0    0    0    0    0    0  239    0    0    0    0    0    0
+     0    0]
+ [   0    0    7    0    0    0    0    0    3    0    0    0    0    0
+     0    0]
+ [   0    9    0    0    0    0    0    0    0  456   18    3    0    0
+     0    0]
+ [   0    1    0    0    0    0    0    0    0    3 1224    0    0    0
+     0    0]
+ [   0    6    7    0    0    0    0    0    0    0    9  275    0    0
+     0    0]
+ [   0    0    0    0    0    0    0    0    0    0    2    0  100    0
+     0    0]
+ [   0    0    0    0    0    0    0    0    0    0    0    1    0  626
+     6    0]
+ [   0    0    0    0    0    0    0    0    0    0    3    3    0    2
+   185    0]
+ [   0    0    0    0    0    0    0    0    0    0    0   13    0    0
+     0   33]]

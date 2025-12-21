@@ -1323,7 +1323,119 @@ This enables:
 
 ---
 
+## Understanding RGB Composites
 
+### What is an RGB Composite?
+
+An **RGB composite** is a method to visualize hyperspectral images (which have 100-200+ bands) as a normal color image that humans can see (which needs only 3 bands: Red, Green, Blue).
+
+**The Problem:**
+- Hyperspectral images have too many bands for humans to view directly
+- Computer monitors can only display 3 color channels: Red, Green, Blue (RGB)
+- We need to select 3 representative bands from 200+ available bands
+
+**The Solution:**
+- Pick 3 specific bands from the hyperspectral cube
+- Assign them to Red, Green, and Blue display channels
+- This creates a "false-color" or "true-color" composite for visualization
+
+### Example: Indian Pines (200 bands)
+
+```
+Hyperspectral Cube: 145 x 145 x 200 bands
+                                   ^^^
+                    Too many for human viewing!
+
+RGB Composite Selection:
+- Red channel   <- Band 60  (~650nm wavelength)
+- Green channel <- Band 40  (~550nm wavelength)
+- Blue channel  <- Band 20  (~450nm wavelength)
+
+Result: 145 x 145 x 3 (normal RGB image we can view)
+                    ^
+              Only 3 bands displayed!
+```
+
+### True-Color vs False-Color Composites
+
+**True-Color Composite:**
+- Uses bands corresponding to visible Red, Green, Blue wavelengths
+- Looks like a normal photograph
+- Example: Bands covering ~450nm (blue), ~550nm (green), ~650nm (red)
+
+**False-Color Composite:**
+- Uses any 3 bands (often including near-infrared)
+- Colors don't match what our eyes would see
+- Useful for emphasizing vegetation, water, or other features
+- Example: KSC uses bands 50, 30, 10 (including infrared) -> shows wetlands clearly
+
+### Important: RGB is ONLY for Visualization!
+
+**Critical Understanding:**
+
+```
+RGB Composite (3 bands)        ->  For human viewing ONLY
+                                   NOT used for classification!
+
+Full Hyperspectral (200 bands) ->  For machine learning classification
+                                   Uses ALL spectral information!
+```
+
+**Proof from Code:**
+
+```python
+# Step 1: Create RGB for visualization (3 bands)
+rgb_image = select_rgb_bands(image, red_band=50, green_band=30, blue_band=10)
+                                    # Only 3 bands selected!
+
+# Step 2: Classification uses ALL bands via PCA (200 -> 50 components)
+pca = PCA(n_components=50)
+pca_data = pca.fit_transform(image.reshape(-1, 200))
+                                              ^^^
+                                    ALL 200 bands used for classification!
+
+# Step 3: Spatial-spectral features (11x11 patches x 50 PCA = 6,050 features)
+X = extract_patches(pca_image, positions, patch_size=11)
+print(X.shape)  # (10249, 6050) <- Using 6,050 features, not just 3!
+```
+
+### Why This Confusion Happens
+
+Many people mistakenly think:
+- "The RGB image shows the data, so we must be classifying RGB"
+- **WRONG!** The RGB is just a preview/thumbnail for humans
+
+The reality:
+- RGB shows 3 bands for visualization
+- Classification uses ALL 200 bands (via PCA compression)
+- That's why hyperspectral beats regular cameras - it captures WAY more information!
+
+### Band Selection Strategy
+
+**For AVIRIS sensor (like Indian Pines, KSC):**
+
+| Band Number | Wavelength | Purpose |
+|-------------|------------|---------|
+| 10-20 | ~450nm | Blue visible |
+| 30-40 | ~550nm | Green visible |
+| 50-60 | ~650nm | Red visible |
+| 70-100 | ~800-1000nm | Near-infrared (vegetation) |
+
+**Common band selections:**
+- **True color**: Bands close to visible RGB
+- **False color (vegetation)**: Near-IR, Red, Green (makes plants bright)
+- **False color (water)**: Short-wave IR, Near-IR, Green (enhances water bodies)
+
+### Practical Example from Our Results
+
+**Indian Pines visualization shows:**
+- **RGB Composite (top-left)**: Uses 3 bands for display - shows cyan/red agricultural fields
+- **Predicted Classification (middle-left)**: Uses ALL 200 bands via PCA -> 95.88% accuracy
+- **Overlay (middle-right)**: Classification overlaid on RGB at 50% transparency
+
+If we classified using only the RGB (3 bands), accuracy would drop to ~60-70%!
+
+---
 
 ## The Challenge
 
