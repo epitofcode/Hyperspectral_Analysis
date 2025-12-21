@@ -110,7 +110,8 @@ def normalize_image(image: np.ndarray, method: str = 'minmax') -> np.ndarray:
 def select_rgb_bands(image: np.ndarray,
                      red_band: Optional[int] = None,
                      green_band: Optional[int] = None,
-                     blue_band: Optional[int] = None) -> np.ndarray:
+                     blue_band: Optional[int] = None,
+                     percentile_clip: float = 98.0) -> np.ndarray:
     """
     Select RGB bands from hyperspectral image for visualization
 
@@ -119,29 +120,47 @@ def select_rgb_bands(image: np.ndarray,
         red_band: Band index for red channel (default: band near 650nm)
         green_band: Band index for green channel (default: band near 550nm)
         blue_band: Band index for blue channel (default: band near 450nm)
+        percentile_clip: Percentile for clipping outliers (default: 98.0)
 
     Returns:
         RGB image with shape (height, width, 3)
     """
     total_bands = image.shape[2]
 
-    # Default band selection (approximate wavelengths)
+    # Better default band selection for AVIRIS-like data (KSC)
+    # These correspond approximately to visible wavelengths
     if red_band is None:
-        red_band = int(total_bands * 0.6)  # ~60% through spectrum
+        red_band = min(50, total_bands - 1)  # ~650nm for AVIRIS
     if green_band is None:
-        green_band = int(total_bands * 0.4)  # ~40% through spectrum
+        green_band = min(30, total_bands - 1)  # ~550nm for AVIRIS
     if blue_band is None:
-        blue_band = int(total_bands * 0.2)  # ~20% through spectrum
+        blue_band = min(10, total_bands - 1)  # ~450nm for AVIRIS
 
     # Extract RGB bands
     rgb = np.stack([
         image[:, :, red_band],
         image[:, :, green_band],
         image[:, :, blue_band]
-    ], axis=2)
+    ], axis=2).astype(np.float32)
 
-    # Normalize to [0, 1]
-    rgb = normalize_image(rgb, method='minmax')
+    # Clip outliers using percentile-based normalization
+    # This handles saturated pixels (65535) and noise
+    for i in range(3):
+        channel = rgb[:, :, i]
+        # Compute percentiles, ignoring zeros
+        non_zero = channel[channel > 0]
+        if len(non_zero) > 0:
+            vmin = np.percentile(non_zero, 2)
+            vmax = np.percentile(non_zero, percentile_clip)
+            # Clip and normalize
+            channel = np.clip(channel, vmin, vmax)
+            channel = (channel - vmin) / (vmax - vmin + 1e-8)
+            rgb[:, :, i] = channel
+        else:
+            rgb[:, :, i] = 0
+
+    # Ensure [0, 1] range
+    rgb = np.clip(rgb, 0, 1)
 
     return rgb
 
