@@ -1,0 +1,71 @@
+HYRANK LOUKIA - SIMPLIFIED BASELINE RESULTS
+================================================================================
+
+CONFIGURATION:
+----------------------------------------
+Method: Simplified baseline (CLAUDE.md pragmatism principle)
+PCA components: 50
+Patch size: 11x11
+Classifier: Single SVM (RBF, C=100, class_weight='balanced')
+No Gabor, No augmentation, No ensemble
+
+
+CLASS DISTRIBUTION:
+----------------------------------------
+  Class  1:   288 samples
+  Class  2:    67 samples
+  Class  3:   542 samples
+  Class  4:    79 samples
+  Class  5:  1401 samples
+  Class  6:   223 samples
+  Class  7:   500 samples
+  Class  8:  1072 samples
+  Class  9:  3793 samples
+  Class 10:  2803 samples
+  Class 11:   404 samples
+  Class 12:   487 samples
+  Class 13:  1393 samples
+  Class 14:   451 samples
+
+
+OVERALL RESULTS:
+----------------------------------------
+Overall Accuracy (OA): 94.28%
+Average Accuracy (AA): 88.91%
+Kappa Coefficient:     0.9318
+
+
+PER-CLASS ACCURACY:
+----------------------------------------
+  Class  1:  79.86%
+  Class  2: 100.00%
+  Class  3:  96.31%
+  Class  4:  53.85%
+  Class  5:  99.43%
+  Class  6:  54.05%
+  Class  7:  89.20%
+  Class  8:  92.16%
+  Class  9:  96.68%
+  Class 10:  91.01%
+  Class 11:  93.07%
+  Class 12:  99.18%
+  Class 13: 100.00%
+  Class 14: 100.00%
+
+
+CONFUSION MATRIX:
+----------------------------------------
+[[ 115    0    1    0   24    0    0    0    4    0    0    0    0    0]
+ [   0   33    0    0    0    0    0    0    0    0    0    0    0    0]
+ [   2    0  261    0    7    0    0    0    1    0    0    0    0    0]
+ [   0    0    0   21   18    0    0    0    0    0    0    0    0    0]
+ [   2    0    0    1  697    0    0    0    1    0    0    0    0    0]
+ [   0    0    1    0    4   60    0   11   35    0    0    0    0    0]
+ [   0    0    0    0    6    0  223    8   13    0    0    0    0    0]
+ [   0    0    0    0    0    0    0  494   42    0    0    0    0    0]
+ [   0    0    0    0    2    0    0   20 1834   41    0    0    0    0]
+ [   0    0    0    0    0    0    0    0  126 1276    0    0    0    0]
+ [   0    0    0    0    0    0    0    0    2   11  188    1    0    0]
+ [   0    0    0    0    0    0    0    0    0    1    1  242    0    0]
+ [   0    0    0    0    0    0    0    0    0    0    0    0  697    0]
+ [   0    0    0    0    0    0    0    0    0    0    0    0    0  225]]

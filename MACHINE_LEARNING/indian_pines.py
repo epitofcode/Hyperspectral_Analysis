@@ -10,7 +10,7 @@ Sensor: AVIRIS (145 x 145 x 200 bands)
 Method (MINIMAL):
 - PCA dimensionality reduction (50 components)
 - Single-scale spatial patches (11x11)
-- Single SVM classifier with class balancing
+- Single SVM classifier with class balancing    
 - No augmentation, no Gabor, no ensemble complexity
 """
 
